@@ -23,6 +23,7 @@ public class UserDTOService implements UserDetailsService {
 
     public User register(UserDTO userData) {
         User user = new User();
+        System.out.println(userData.getUsername());
         user.setUsername(userData.getUsername());
         user.setPassword(encoder.encode(userData.getPassword()));
         userRepository.save(user);
