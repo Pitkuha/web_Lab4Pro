@@ -18,6 +18,9 @@ public class Dot {
     @Column(name="RESULT")
     private boolean result;
 
+    @ManyToOne
+    private User owner;
+
     public Dot(double x, double y, double r, boolean result) {
         this.x = x;
         this.y = y;
@@ -65,5 +68,13 @@ public class Dot {
 
     public void setResult(boolean result) {
         this.result = result;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

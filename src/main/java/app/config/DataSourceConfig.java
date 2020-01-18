@@ -23,12 +23,12 @@ public class DataSourceConfig {
         return dataSourceBuilder.build();
     }
 
-//    @Bean
-//    public JpaVendorAdapter jpaVendorAdapter() {
-//        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-//        hibernateJpaVendorAdapter.setShowSql(true);
-//        hibernateJpaVendorAdapter.setGenerateDdl(true); //Auto creating scheme when true
-//        return hibernateJpaVendorAdapter;
-//
-//    }
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        hibernateJpaVendorAdapter.setShowSql(true);
+        hibernateJpaVendorAdapter.setGenerateDdl(true); //Auto creating scheme when true
+        return hibernateJpaVendorAdapter;
+
+    }
 }

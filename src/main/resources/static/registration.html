@@ -12,9 +12,10 @@
 </header>
         <form id="appreg"
               @submit="checkForm"
-              action="work.html"
+              action="http://localhost:8080/registration"
               method="post"
         >
+            <div v-if="error != null" class="aler alert-danger">{{err_msg}}</div>
             <p class="errorchik" v-if="errors.length">
                 <b>Пожалуйста исправьте указанные ошибки:</b>
                 <ul>
@@ -55,12 +56,15 @@
         <input type="button" value="На главную" name="back" onclick="back()">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 <script>
+    let urlP = new URLSearchParams(window.location.search);
     var app = new Vue({
         el: '#appreg',
         data: {
+            error: urlP.get('error'),
             errors: [],
             email: null,
-            password: null
+            password: null,
+            err_msg: 'Registration failed. User exists'
         },
         methods: {
             checkForm: function (e) {
@@ -90,7 +94,7 @@
 
     function back()
     {
-        window.location = "index.html"
+        window.location = "main.html"
     }
 </script>
 </body>
