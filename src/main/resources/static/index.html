@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authorized</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/style-main.css">
+</head>
+<body>
+<div id="shapka">
+    <label>Питковский Даниил Дмитриевич. P3213 <br> Вариант:7445</label>
+</div>
+    <form id="app"
+    @submit="checkForm"
+    action="work.html"
+    method="post"
+    novalidate="true"
+    >
+        <p class="errorchik" v-if="errors.length">
+            <b>Пожалуйста исправьте указанные ошибки:</b>
+                <p class="errorchik" v-for="error in errors">{{ error }}</p>
+        </p>
+        <div class="mainArea">
+        <p>
+            <label for="email"><i class="e">Логин</i></label>
+            <br/>
+            <input
+            id="email"
+            v-model="email"
+            type="email"
+            name="email"
+            placeholder="Введите Логин"
+            >
+        </p>
+        <p>
+            <label for="password"><i class="e">Пароль</i></label>
+            <br/>
+            <input
+            id="password"
+            v-model="password"
+            type="password"
+            name="password"
+            placeholder="Введите Пароль"
+            >
+        </p>
+        </div>
+        <p>
+            <input
+            type="submit"
+            value="Войти"
+            >
+        </p>
+    </form>
+    <input type="button" value="Регистрация" name="reg" onclick="reg()">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            errors: [],
+            email: null,
+            password: null
+        },
+        methods: {
+            checkForm: function (e) {
+                this.errors = [];
+
+                if (!this.email){
+                    this.errors.push('Укажите логин')}
+                // } else if (!this.validEmail(this.email)){
+                //     this.errors.push('Укажите корректный Логин')
+                // }
+
+                if (!this.password){
+                    this.errors.push('Укажите пароль')
+                }
+
+                if (!this.errors.length) {
+                    return true;
+                }
+
+                e.preventDefault();
+            },
+            validEmail: function (email) {
+                 return false;
+            }
+        }
+    });
+
+    function reg()
+    {
+        window.location = "registration.html"
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/* ПОСТАВИТЬ ВЕЗДЕ SANS-SERIF */
+
+header {
+    text-align: center;
+    margin: 0 15%;
+    color: orange;
+    font-family: Sans-serif;
+}
+body {
+    background: url("../picture/regBack.jpg");
+    text-align: center;
+}
+.errorchik {
+    font-weight: bold;
+    color: orange;
+    font-family: Sans-serif;
+    font-size: 22px;
+}
+.mainArea {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    border: skyblue solid 8px;
+}
+.e {
+    font-family: Sans-serif;
+    color: orange;
+}
+@media screen and (min-width: 1078px){
+    .mainArea {
+        width: 25%;
+    }
+    header {
+        font-size: 42px;
+    }
+    .e {
+        font-size: 35px;
+    }
+    .errorchik {
+        font-size: 35px;
+    }
+    #email, #password{
+        width: 70%;
+    }
+}
+@media screen and (min-width: 782px) and (max-width: 1078px){
+    .mainArea {
+        width: 35%;
+    }
+}
+@media screen and (max-width: 782px){
+    .mainArea {
+        margin-top: 50%;
+        width: 65%;
+    }
+    header {
+        font-size: 20px;
+    }
+
+}

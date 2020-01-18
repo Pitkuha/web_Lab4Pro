@@ -1,0 +1,218 @@
+<!--action="http://localhost:8080/message"
+method="get"-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Work Page</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/graphManager.js"></script>
+    <script src="js/mouseListener.js"></script>
+    <link rel="stylesheet" href="css/style-work.css">
+</head>
+<body onload="redraw()">
+<center>
+    <div id="appwork">
+    <input type="button" value="Выйти" name="back" onclick="back()">
+    <form
+          @submit="sendNewDot()"
+          novalidate="true"
+    >
+
+        <div class="d-header">
+            Введите данные для отправки на сервер
+        </div>
+        <input
+                type="button"
+                value="SEND A POSTCARD"
+                @click="sendNewDot()"
+
+        ><br/><br/>
+
+        <p class="errorchik" v-if="errors.length">
+            <b>Пожалуйста исправьте указанные ошибки:</b>
+        <p class="errorchik" v-for="error in errors">{{ error }}</p>
+        </p>
+
+        <table id="ftable">
+            <tr>
+                <td>X</td><td>Y</td><td>R</td>
+            </tr>
+            <tr>
+                <td>
+                    <input
+                            id="X"
+                            v-model="X"
+                            type="text"
+                            name="X"
+                            placeholder="Введите параметр X"
+                    >
+                </td>
+                <td>
+                    <input
+                            id="Y"
+                            v-model="Y"
+                            type="text"
+                            name="Y"
+                            placeholder="Введите параметр Y"
+                    >
+                </td>
+                <td>
+                    <input  onkeyup="redraw()"
+                            id="R"
+                            v-model="R"
+                            type="text"
+                            name="R"
+                            placeholder="Введите параметр R"
+                    >
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br/>
+    <br/>
+    <div>
+    <canvas height="360px" width="360px" id="zoneCanvas" title="График" @click="sendPlotDot()"/>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <table id="result-table">
+        <tr >
+            <td>X</td><td>Y</td><td>R</td><td>Entering</td>
+        </tr>
+        <tr v-for="dots in dotsList">
+            <td>{{ round(dots.x) }}</td>
+            <td>{{ round(dots.y) }}</td>
+            <td>{{ dots.r }}</td>
+            <td>{{ dots.result }}</td>
+        </tr>
+    </table>
+    </div>
+</center>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script type="application/javascript">
+    var app = new Vue({
+        el: '#appwork',
+        data: {
+            errors: [],
+            X: null,
+            Y: null,
+            R: null,
+            info: null,
+            dotsList: [],
+            url: {
+                dotAdder: 'http://localhost:8080/dots',
+                dotClear: '/clear'
+            }
+        },
+        methods: {
+            checkForm: function (e) {
+                this.errors = [];
+
+                if (!this.X){
+                    this.errors.push('Укажите параметр X')
+                } else if (this.validX(this.X)) {
+                    this.errors.push('Введены некорректные данные X')
+                }
+
+                if (!this.Y){
+                    this.errors.push('Укажите параметр Y')
+                } else if (this.validY(this.Y)) {
+                    this.errors.push('Введены некорректные данные Y')
+                }
+
+                if (!this.R){
+                    this.errors.push('Укажите параметр R')
+                } else if (this.validR(this.R)) {
+                    this.errors.push('Введены некорректные данные R')
+                }
+
+                if (!this.errors.length) {
+                    return true;
+                }
+
+                e.preventDefault();
+            },
+            validX: function (X) {
+                if (X < -5 || X > 3 || !X.match(/[0-9]/))
+                return true;
+            },
+            validY: function (Y) {
+                if (Y < -5 || Y > 5 || !Y.match(/[0-9]/))
+                    return true;
+            },
+            validR: function (R) {
+                if (R < 0 || R > 5 || !R.match(/[0-9]/))
+                    return true;
+            },
+
+            sendNewDot() {
+                //this.checkForm();
+                axios.post(this.url.dotAdder, {x: this.X, y: this.Y, r: this.R}).then(response => {console.log(response.data);this.requestAllDots()});
+            },
+            requestAllDots() {
+                this.dotsList = [];
+                axios.get(this.url.dotAdder).then((response) => {
+                    this.dotsList = response.data;
+                    console.log(this.dotsList);
+                    this.info = response;
+                });
+            },
+            sendPlotDot(){
+                const plot_container = document.getElementById("zoneCanvas");
+                var plot_context = plot_container.getContext("2d");
+                var R = document.getElementById("R").value;
+
+                let x = (event.x - document.getElementById("zoneCanvas").getBoundingClientRect().left - 180) / (30);
+                let y = (event.y - document.getElementById("zoneCanvas").getBoundingClientRect().top - 180) / (-30);
+
+                this.X = this.round(x);
+                this.Y = this.round(y);
+                this.R = R;
+                // drawPoint(this.X, this.Y, this.setDotColor());
+
+                this.sendNewDot();
+            },
+            round(num) {
+                return Math.floor(num * 100) / 100;
+            },
+            setDotColor() {
+                if (!check(this.X, this.Y, this.R)) {
+                    return "#AD2D2D";
+                } else {
+                    return "green";
+                }
+            }
+        },
+        created: function () {
+            this.requestAllDots();
+        }
+    });
+
+    function check(x, y, r) {
+        return checkCircle(x, y, r) || checkRectangle(x, y, r) || checkTriangle(x, y, r);
+
+    }
+
+    function checkRectangle(x, y, r) {
+        return (x >= 0) && (y >= 0) && (x <= r) && (y <= r/2);
+    }
+
+    function checkCircle(x, y, r) {
+        return (x >= 0) && (y <= 0) && (x*x + y*y <= r*r);
+    }
+
+    function checkTriangle(x, y, r) {
+        return (x <= 0) && (y <= 0) && (y + 2*x >= -r);
+    }
+
+    function back()
+    {
+        window.location = "index.html"
+    }
+</script>
+</body>
+</html>
