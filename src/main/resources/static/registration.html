@@ -14,8 +14,9 @@
               @submit="checkForm"
               action="http://localhost:8080/registration"
               method="post"
+              novalidate="true"
         >
-            <div v-if="error != null" class="aler alert-danger">{{err_msg}}</div>
+            <div v-if="error != null" class="alert alert-danger">{{err_msg}}</div>
             <p class="errorchik" v-if="errors.length">
                 <b>Пожалуйста исправьте указанные ошибки:</b>
                 <ul>
@@ -98,5 +99,4 @@
     }
 </script>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 </html>

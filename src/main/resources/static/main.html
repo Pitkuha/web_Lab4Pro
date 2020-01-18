@@ -5,16 +5,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="css/style-main.css">
+
 </head>
 <body>
 <div id="shapka">
     <label>Питковский Даниил Дмитриевич. P3213 <br> Вариант:7445</label>
 </div>
     <form id="app"
-    @submit="checkForm"
-    action="work.html"
-    method="post"
-    novalidate="true"
+        @submit="checkForm"
+        action="work.html"
+        method="post"
+        novalidate="true"
+
     >
         <p class="errorchik" v-if="errors.length">
             <b>Пожалуйста исправьте указанные ошибки:</b>

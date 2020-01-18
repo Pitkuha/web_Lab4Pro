@@ -15,9 +15,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Пока не получается подключить SpringData и БД делаю локально
- */
 @RestController
 @CrossOrigin(origins = "http://localhost:63342", allowCredentials="true")
 public class DotController{
