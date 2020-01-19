@@ -23,8 +23,6 @@ public class UserDTOService implements UserDetailsService {
 
     public User register(UserDTO userData) {
         User user = new User();
-        System.out.println(userData.getUsername());
-        System.out.println(userData.getPassword());
         user.setUsername(userData.getUsername());
         user.setPassword(encoder.encode(userData.getPassword()));
         userRepository.save(user);
@@ -35,8 +33,9 @@ public class UserDTOService implements UserDetailsService {
         return userRepository.countByUsername(login) == 0;
     }
 
-    public User isLoginThere(String login, String password) {
-        return userRepository.findByUsernameAndPassword(login, password);
+    public boolean isLoginThere(String login, String password) {
+        String encoded = encoder.encode(password);
+        return userRepository.findByUsernameAndPassword(login, encoded) != null;
     }
 
     @Override

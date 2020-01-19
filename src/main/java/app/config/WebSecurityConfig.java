@@ -16,6 +16,8 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    public static String SAULT = "$2a$04$ECwy66BXzNelqaygvhxu1u";
+
     @Autowired
     private DataSource dataSource;
 
@@ -27,11 +29,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/reg", "/", "/registration", "/resources/css/*", "/resources/js/*", "/login", "/work").permitAll()
+                .antMatchers("/registration.html", "/css/*", "/js/*", "/picture/*", "/registration", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
-                    .loginPage("/login")
+                    .loginPage("/login.html")
                     .permitAll()
                 .and()
                     .httpBasic()
@@ -45,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new PasswordEncoder() {
             @Override
             public String encode(CharSequence rawPassword) {
-                return BCrypt.hashpw(rawPassword.toString(), BCrypt.gensalt(4));
+                return BCrypt.hashpw(rawPassword.toString(), SAULT);
 
             }
 

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:63342", allowCredentials="true")
 public class DotController{
     @Autowired
     private final DotManipulationBean DMB = new DotManipulationBean();
