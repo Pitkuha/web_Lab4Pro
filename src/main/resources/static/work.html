@@ -15,7 +15,11 @@ method="get"-->
 <body onload="redraw()">
 <center>
     <div id="appwork">
-    <input type="button" value="Выйти" name="back" onclick="back()">
+    <form action="http://localhost:8080/logout">
+        <input type="submit" value="signOut">
+    </form>
+
+        <!--<input type="button" value="Выйти" name="back" onclick="back()">-->
     <form
           @submit="sendNewDot()"
           novalidate="true"
@@ -211,7 +215,7 @@ method="get"-->
 
     function back()
     {
-        window.location = "main.html"
+        window.location = "login.html"
     }
 </script>
 </body>
