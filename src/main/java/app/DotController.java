@@ -32,24 +32,6 @@ public class DotController{
     @PostMapping(value = "/dots" ,produces = "application/json;")
 //    @ResponseBody
     public String addDot(@Valid @RequestBody DotDTO request, BindingResult bindingResult, Principal principal){
-//        System.out.println("fffkfkkfkfkf");
-////        dotDtoSevice.save(request);
-//        Dot d = new Dot();
-//        System.out.println("info");
-//        System.out.println(request.getX());
-//        System.out.println(request.getY());
-//        System.out.println(request.getY());
-//        d.setX(request.getX());
-//        d.setY(request.getY());
-//        d.setR(request.getR());
-//        d.setResult(DMB.checkDotArea(d));
-////        dotRepository.save(d);
-//        dotsList.add(d);
-//        dotRepository.save(d);
-//        System.out.println(dotRepository.findAll());
-//        System.out.println(dotRepository.count());
-//
-//        System.out.println(dotsList);
         System.out.println(principal.getName());
         dotDtoSevice.save(request, principal.getName());
         return "ok";

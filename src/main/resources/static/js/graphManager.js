@@ -38,8 +38,8 @@ function redraw(){
 
         plot_context.beginPath();
         plot_context.moveTo(180, 180);
-        plot_context.lineTo(180, 180 - R * 150 / 5);
-        plot_context.lineTo(180 - R * 75 / 5, 180);
+        plot_context.lineTo(180, 180+R*150/5)
+        plot_context.lineTo(180 - R * 75 / 5, 180);;
         plot_context.lineTo(180, 180);
         plot_context.closePath();
         plot_context.fillStyle = '#28c7ff';

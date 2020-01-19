@@ -25,13 +25,13 @@
             </p>
             <div class="mainArea">
                 <p>
-                    <label for="email"><i class="e">Логин</i></label>
+                    <label for="username"><i class="e">Логин</i></label>
                     <br/>
                     <input
-                            id="email"
-                            v-model="email"
+                            id="username"
+                            v-model="username"
                             type="email"
-                            name="email"
+                            name="username"
                             placeholder="Введите Логин"
                     >
                 </p>
@@ -63,15 +63,15 @@
         data: {
             error: urlP.get('error'),
             errors: [],
-            email: null,
+            username: null,
             password: null,
             err_msg: 'Registration failed. User exists'
         },
         methods: {
             checkForm: function (e) {
                 this.errors = [];
-                alert(this.email);
-                if (!this.email){
+                alert(this.username);
+                if (!this.username){
                     this.errors.push('Укажите логин')}
                 // } else if (!this.validEmail(this.email)){
                 //     this.errors.push('Укажите корректный Логин')

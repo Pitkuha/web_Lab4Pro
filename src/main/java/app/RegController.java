@@ -19,14 +19,16 @@ public class RegController {
 
     @PostMapping("/registration")
     public void addUser(UserDTO user, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        //user.getUsername() = 0 ПОЧЕМУ?
+        System.out.println("USERNAME: " + user.getUsername());
+        System.out.println("Password: " + user.getPassword());
         if (!userDTOService.isLoginVacant(user.getUsername())) {
-            response.sendRedirect("http://localhost:63342/registration?error");
+            response.sendRedirect("http://localhost:63342/web_Lab4Pro/static/registration.html?error");
         } else {
-            System.out.println("dkfkdlfkdl");
+            System.out.println("/registration перешли на блок else");
             userDTOService.register(user);
             request.login(user.getUsername(), user.getPassword());
-            response.sendRedirect("/work");
+            response.sendRedirect("http://localhost:63342/web_Lab4Pro/static/work.html");
         }
 
     }

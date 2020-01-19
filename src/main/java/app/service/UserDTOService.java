@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserDTOService implements UserDetailsService {
     private final UserRepository userRepository;
 
-//    @Autowired
+    @Autowired
     private PasswordEncoder encoder;
 
     public UserDTOService(UserRepository userRepository) {
@@ -24,6 +24,7 @@ public class UserDTOService implements UserDetailsService {
     public User register(UserDTO userData) {
         User user = new User();
         System.out.println(userData.getUsername());
+        System.out.println(userData.getPassword());
         user.setUsername(userData.getUsername());
         user.setPassword(encoder.encode(userData.getPassword()));
         userRepository.save(user);

@@ -39,7 +39,7 @@ body {
     .errorchik {
         font-size: 35px;
     }
-    #email, #password{
+    #username, #password{
         width: 70%;
     }
 }
