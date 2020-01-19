@@ -35,6 +35,10 @@ public class UserDTOService implements UserDetailsService {
         return userRepository.countByUsername(login) == 0;
     }
 
+    public User isLoginThere(String login, String password) {
+        return userRepository.findByUsernameAndPassword(login, password);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return new UserDTO(userRepository.findByUsername(username));

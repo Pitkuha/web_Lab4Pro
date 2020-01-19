@@ -18,22 +18,17 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:63342", allowCredentials="true")
 public class DotController{
-    ArrayList<Dot> dotsList = new ArrayList<>();
-    private final DotManipulationBean DMB = new DotManipulationBean();
-    private final DotRepository dotRepository;
-
     @Autowired
-    public DotController(DotRepository dotRepository) {
-        this.dotRepository = dotRepository;
-    }
+    private final DotManipulationBean DMB = new DotManipulationBean();
 
-    private DotDTOService dotDtoSevice;
+
+    private DotDTOService dotDTOService;
 
     @PostMapping(value = "/dots" ,produces = "application/json;")
 //    @ResponseBody
     public String addDot(@Valid @RequestBody DotDTO request, BindingResult bindingResult, Principal principal){
         System.out.println(principal.getName());
-        dotDtoSevice.save(request, principal.getName());
+        dotDTOService.save(request, principal.getName());
         return "ok";
     }
 
@@ -41,6 +36,6 @@ public class DotController{
     @GetMapping("/dots")
     @ResponseBody
     public List<DotDTO> getAllDots(Principal principal){
-        return dotDtoSevice.loadUsersDots(principal.getName());
+        return dotDTOService.loadUsersDots(principal.getName());
     }
 }

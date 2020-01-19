@@ -13,7 +13,7 @@
 </div>
     <form id="app"
         @submit="checkForm"
-        action="work.html"
+        action="http://localhost:8080/login"
         method="post"
         novalidate="true"
 
@@ -24,13 +24,13 @@
         </p>
         <div class="mainArea">
         <p>
-            <label for="email"><i class="e">Логин</i></label>
+            <label for="username"><i class="e">Логин</i></label>
             <br/>
             <input
-            id="email"
-            v-model="email"
+            id="username"
+            v-model="username"
             type="email"
-            name="email"
+            name="username"
             placeholder="Введите Логин"
             >
         </p>
@@ -60,14 +60,14 @@
         el: '#app',
         data: {
             errors: [],
-            email: null,
+            username: null,
             password: null
         },
         methods: {
             checkForm: function (e) {
                 this.errors = [];
 
-                if (!this.email){
+                if (!this.username){
                     this.errors.push('Укажите логин')}
                 // } else if (!this.validEmail(this.email)){
                 //     this.errors.push('Укажите корректный Логин')

@@ -28,7 +28,6 @@ public class DotDTOService {
         }
 
     }
-    //todo На вход будет принимать имя юзера и возвращать все точки где совпадает имя
     public List<DotDTO> loadUsersDots(String name) {
         List<Dot> fromDB = dotRepository.findAllByOwner(userRepository.findByUsername(name));
         List<DotDTO> toClient = new ArrayList<>();
