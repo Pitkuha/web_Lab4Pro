@@ -2,11 +2,8 @@ package app;
 
 import app.domain.UserDTO;
 import app.service.UserDTOService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,6 +27,7 @@ public class RegController {
             userDTOService.register(user);
             request.login(user.getUsername(), user.getPassword());
             response.sendRedirect("http://localhost:63342/web_Lab4Pro/static/work.html");
+            response.sendRedirect("/work");
         }
 
     }
