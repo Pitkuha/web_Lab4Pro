@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-    <h1>Регистрация</h1>
+    <h1>Registration</h1>
 </header>
         <form id="appreg"
               @submit="checkForm"
@@ -16,45 +16,46 @@
               method="post"
               novalidate="true"
         >
-            <div v-if="error != null" class="alert alert-danger">{{err_msg}}</div>
-            <p class="errorchik" v-if="errors.length">
-                <b>Пожалуйста исправьте указанные ошибки:</b>
+            <div style="color: orange; font-size: 25px" v-if="error != null" class="alert alert-danger">{{err_msg}}</div>
+            <p class="errorchik" v-if="errors.length" >
+                <b>Check your error and correct them:</b>
                 <ul>
             <p class="errorchik" v-for="error in errors">{{ error }}</p>
             </ul>
             </p>
             <div class="mainArea">
                 <p>
-                    <label for="username"><i class="e">Логин</i></label>
+                    <label for="username"><i class="e">Login</i></label>
                     <br/>
                     <input
                             id="username"
                             v-model="username"
                             type="email"
                             name="username"
-                            placeholder="Введите Логин"
+                            placeholder="type Login"
                     >
                 </p>
                 <p>
-                    <label for="password"><i class="e">Пароль</i></label>
+                    <label for="password"><i class="e">Password</i></label>
                     <br/>
                     <input
                             id="password"
                             v-model="password"
                             type="password"
                             name="password"
-                            placeholder="Введите Пароль"
+                            placeholder="type Password"
                     >
                 </p>
             </div>
             <p>
                 <input
                         type="submit"
-                        value="Зарегистрироваться"
+                        value="SIGN UP"
+                        class="bubu"
                 >
             </p>
         </form>
-        <input type="button" value="На главную" name="back" onclick="back()">
+        <input class="bubu" type="button" value="SIGN IN" name="back" onclick="back()">
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 <script>
     let urlP = new URLSearchParams(window.location.search);
@@ -70,15 +71,11 @@
         methods: {
             checkForm: function (e) {
                 this.errors = [];
-                alert(this.username);
                 if (!this.username){
-                    this.errors.push('Укажите логин')}
-                // } else if (!this.validEmail(this.email)){
-                //     this.errors.push('Укажите корректный Логин')
-                // }
+                    this.errors.push('Type Login')}
 
                 if (!this.password){
-                    this.errors.push('Укажите пароль')
+                    this.errors.push('Type Password')
                 }
 
                 if (!this.errors.length) {

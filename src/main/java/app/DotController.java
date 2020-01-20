@@ -1,18 +1,14 @@
 package app;
 
-import app.domain.Dot;
 import app.domain.DotDTO;
-import app.repository.DotRepository;
 import app.service.DotDTOService;
 import app.util.DotManipulationBean;
-import org.hibernate.hql.internal.ast.tree.DotNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,7 +16,7 @@ public class DotController{
     @Autowired
     private final DotManipulationBean DMB = new DotManipulationBean();
 
-
+    @Autowired
     private DotDTOService dotDTOService;
 
     @PostMapping(value = "/dots" ,produces = "application/json;")

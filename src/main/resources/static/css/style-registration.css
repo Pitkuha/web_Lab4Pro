@@ -1,5 +1,10 @@
 /* ПОСТАВИТЬ ВЕЗДЕ SANS-SERIF */
-
+.bubu{
+    background-color: white;
+    color: orange;
+    width: 8%;
+    border-radius: 3px;
+}
 header {
     text-align: center;
     margin: 0 15%;

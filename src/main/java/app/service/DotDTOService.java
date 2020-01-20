@@ -5,10 +5,12 @@ import app.domain.DotDTO;
 import app.repository.DotRepository;
 import app.repository.UserRepository;
 import app.util.DotManipulationBean;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class DotDTOService {
     private final DotRepository dotRepository;
     private DotManipulationBean dotManipulationBean;

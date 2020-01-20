@@ -38,8 +38,8 @@ function redraw(){
 
         plot_context.beginPath();
         plot_context.moveTo(180, 180);
-        plot_context.lineTo(180, 180+R*150/5)
-        plot_context.lineTo(180 - R * 75 / 5, 180);;
+        plot_context.lineTo(180, 180+R*150/5);
+        plot_context.lineTo(180 - R * 75 / 5, 180);
         plot_context.lineTo(180, 180);
         plot_context.closePath();
         plot_context.fillStyle = '#28c7ff';
@@ -141,7 +141,6 @@ function redraw(){
     plot_context.fillText("-3", 170, 275);
     plot_context.fillText("-4", 170, 305);
     plot_context.fillText("-5", 170, 335);
-    callRedraw([{name:'pR', value: R}]);
 }
 
 function onPointCliecked(x, y, r){

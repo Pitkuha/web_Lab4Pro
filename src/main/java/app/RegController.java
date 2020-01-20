@@ -17,7 +17,8 @@ public class RegController {
     @PostMapping("/registration")
     public void addUser(UserDTO user, HttpServletRequest request, HttpServletResponse response) throws Exception {
         if (!userDTOService.isLoginVacant(user.getUsername())) {
-            response.sendRedirect("/error.html");
+            //response.sendRedirect("/error.html");
+            response.sendRedirect("/registration.html?error");
         } else {
             userDTOService.register(user);
             request.login(user.getUsername(), user.getPassword());
@@ -35,7 +36,8 @@ public class RegController {
             request.login(user.getUsername(), user.getPassword());
             response.sendRedirect("/work.html");
         } else {
-            response.sendRedirect("/error.html");
+            //response.sendRedirect("/error.html");
+            response.sendRedirect("/login.html?error");
         }
     }
 }

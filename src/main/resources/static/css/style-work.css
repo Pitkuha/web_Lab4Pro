@@ -9,6 +9,17 @@
     border: 5px solid orange;
     width: 33%;
 }
+#result-table > tbody > tr > td{
+    text-align: center;
+    border: 1px solid orange;
+    width: 25%;
+}
+.bubu{
+    background-color: white;
+    color: orange;
+    width: 8%;
+    border-radius: 3px;
+}
 .d-header{
     text-align: center;
     font-size: 20px;

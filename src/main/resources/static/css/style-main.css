@@ -4,6 +4,12 @@ body {
     background: url("../picture/regBack.jpg");
     text-align: center;
 }
+.bubu{
+    background-color: white;
+    color: orange;
+    width: 8%;
+    border-radius: 3px;
+}
 #shapka {
     font-weight: bold;
     font-size: 25px;
@@ -49,6 +55,7 @@ body {
         width: 70%;
     }
 }
+
 @media screen and (min-width: 782px) and (max-width: 1078px){
     .mainArea {
         width: 35%;
